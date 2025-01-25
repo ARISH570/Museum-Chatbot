@@ -8,7 +8,8 @@ const bodyParser = require('body-parser');
 const  i18nMiddleware = require('./middlewares/i18n');
 const Event = require('./models/Event');
 const User = require('./models/user'); 
-
+const nodemailer = require('nodemailer');
+require('dotenv').config(); // Load environment variables from .env file
 
 //const location = require('./models/location');
 
@@ -138,14 +139,15 @@ app.get('/users/:id/recommendations', (req, res) => {
 //below email confirmation
 const nodemailer = require('nodemailer');
 
+// Nodemailer Transporter Setup (using environment variables)
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     host: 'smtp.gmail.com',
     port: 465, 
     secure: true,
     auth: {
-        user: 'ARISHNBPC@GMAIL.COM',
-        pass: 'uoomhvoeddqenoaj' 
+        user: process.env.EMAIL_USER, // Use email from .env file
+        pass: process.env.EMAIL_PASS  // Use password from .env file
     }
 });
 
@@ -157,7 +159,7 @@ app.post('/tickets/:id/confirm', async (req, res) => {
 
     try {
         await transporter.sendMail({
-            from: 'ARISHNBPC@GMAIL.COM',
+            from: 'process.env.EMAIL_USER',
             to: userEmail,
             subject: 'Booking Confirmation',
             text: 'Your ticket has been confirmed!'
