@@ -12,7 +12,6 @@ const User = require('./models/user');
 
 //const location = require('./models/location');
 
-//ii8n not working
 const app = express();
 app.use(express.json());
 
