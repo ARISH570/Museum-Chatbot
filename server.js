@@ -8,7 +8,6 @@ const bodyParser = require('body-parser');
 const  i18nMiddleware = require('./middlewares/i18n');
 const Event = require('./models/Event');
 const User = require('./models/user'); 
-const nodemailer = require('nodemailer');
 require('dotenv').config(); // Load environment variables from .env file
 
 //const location = require('./models/location');

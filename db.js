@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
+const nodemailer = require('nodemailer');
+require('dotenv').config(); // Load environment variables from .env file
 
 // MongoDB connection string
-const mongoURI = 'mongodb+srv://arish:arish@cluster0.i0ln9.mongodb.net/';
+const mongoURI = process.env.DB_URI;
 
 const connectDB = async () => {
     try {
